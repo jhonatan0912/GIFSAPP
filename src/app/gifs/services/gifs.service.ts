@@ -18,6 +18,10 @@ export class GifsService {
     return [...this._historial]
   }
 
+  constructor() {
+    this.readLocalStorage();
+  }
+
   buscarGifs(tag: string = '') {
     tag = tag.trim().toLocaleLowerCase();
     if (!this._historial.includes(tag)) {
@@ -40,5 +44,9 @@ export class GifsService {
     if (!localStorage.getItem('history')) return;
 
     this._historial = JSON.parse(localStorage.getItem('history')!);
+
+    if (this._historial.length === 0) return;
+
+    this.buscarGifs(this._historial[0]);
   }
 }
