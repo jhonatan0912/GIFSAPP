@@ -1,0 +1,8 @@
+#sidebar {
+  position: fixed;
+  border-right: 1px solid gray;
+}
+
+.list-group>button:not(:last-child) {
+  margin-bottom: .5em;
+}
