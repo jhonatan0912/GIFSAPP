@@ -36,4 +36,9 @@ export class GifsService {
     localStorage.setItem('history', JSON.stringify(this._historial));
   }
 
+  private readLocalStorage(): void {
+    if (!localStorage.getItem('history')) return;
+
+    this._historial = JSON.parse(localStorage.getItem('history')!);
+  }
 }
