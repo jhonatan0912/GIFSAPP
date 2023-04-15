@@ -19,16 +19,16 @@ export class GifsService {
     return [...this._historial]
   }
 
-  buscarGifs(query: string = '') {
+  buscarGifs(tag: string = '') {
 
-    query = query.trim().toLocaleLowerCase();
+    tag = tag.trim().toLocaleLowerCase();
 
-    if (!this._historial.includes(query)) {
-      this._historial.unshift(query);
+    if (!this._historial.includes(tag)) {
+      this._historial.unshift(tag);
       this._historial = this._historial.splice(0, 10);
     }
 
-    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=sFPUjFWUFrB4Vk0us9ORhJwKsuPdWspO&q=${query}&limit=10`)
+    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=sFPUjFWUFrB4Vk0us9ORhJwKsuPdWspO&q=${tag}&limit=10`)
       .subscribe((response) => {
         console.log(response.data);
         this.resultados = response.data
